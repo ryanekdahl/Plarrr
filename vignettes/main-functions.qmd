@@ -10,15 +10,14 @@ plastics <- load_data()
 
 ## Planned Functions
 
-### 1. Summarize top plastic-producing companies by country
+### 1. Summarize total plastic collected by country
 
 ```{r}
-summarize_top_companies(plastics, country = "United States", year = 2020, top_n = 5)
+summarize_country_totals(plastics, year = 2020, top_n = 10)
 ```
 
-Filters to a given country and year, groups by "parent_company", sums
-"grand_total", and returns a ranked table of the top offending companies.
-Removes filler entries like "Grand Total" and "Unbranded" automatically.
+Filters out filler rows like "Grand Total" and "Unbranded", groups by
+country, and returns a ranked table of the top 10 countries as default (or as many as desired) by grand_total plastic collected for a given year. 
 
 ### 2. Plot country-level plastic waste by year
 
