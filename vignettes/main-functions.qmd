@@ -16,7 +16,9 @@ plastics <- load_data()
 summarize_country_totals(plastics, year = 2020, top_n = 10)
 ```
 
-Filters out filler rows like "Grand Total" and "Unbranded", groups by country, and returns a ranked table of the top 10 countries as default (or as many as desired) by grand_total plastic collected for a given year. 
+Filters out filler rows like "Grand Total" and "Unbranded", groups by country, 
+and returns a ranked table of the top 10 countries as default (or as many as desired) 
+by grand_total plastic collected for a given year. 
 
 ### 2. Plot country-level plastic waste by year
 
