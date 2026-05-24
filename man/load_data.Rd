@@ -7,9 +7,9 @@
 load_data()
 }
 \value{
-A data frame with columns including country, year, parent_company,
+A data frame with columns that include country, year, parent_company,
 plastic type totals (hdpe, ldpe, pet, pp, ps, pvc), grand_total,
-num_events, and volunteers.
+num_events, volunteer, and other country level metrics.
 }
 \description{
 Loads the plastic waste dataset directly
