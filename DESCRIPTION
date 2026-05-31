@@ -16,3 +16,6 @@ Roxygen: list(markdown = TRUE)
 RoxygenNote: 8.0.0
 URL: https://github.com/nnayve28/Plarrr
 BugReports: https://github.com/nnayve28/Plarrr/issues
+Suggests: 
+    testthat (>= 3.0.0)
+Config/testthat/edition: 3
