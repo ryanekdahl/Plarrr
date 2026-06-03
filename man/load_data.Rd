@@ -12,8 +12,7 @@ plastic type totals (hdpe, ldpe, pet, pp, ps, pvc), grand_total,
 num_events, volunteer, and other country level metrics.
 }
 \description{
-Loads the plastic waste dataset directly
-from TidyTuesday
+Load plastic waste data
 }
 \examples{
 df <- load_data()

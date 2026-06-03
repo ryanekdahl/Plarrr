@@ -11,6 +11,15 @@ Description: Provides helper functions for cleaning, summarizing, and reshaping
     visualizations.
 License: `use_mit_license()`, `use_gpl3_license()` or friends to pick a
     license
+Imports: 
+    arrow,
+    dplyr,
+    ggplot2,
+    here,
+    readr,
+    rlang,
+    stringr,
+    tidyr
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 8.0.0
