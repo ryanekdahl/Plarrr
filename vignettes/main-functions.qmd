@@ -12,6 +12,25 @@ plastics <- load_data()
 This loads the full merged plastic waste dataset from the package, combining
 the TidyTuesday BFFP audit data with country-level ecology and population data.
 
+## filter_country()
+
+```{r}
+filter_country(plastics, "India", positive_only = TRUE)
+```
+
+This filters to return a data frame with just the Grand Total column for a 
+specific country. There is an option to return values where Grand Total is all
+positive values.
+
+## plastics_long()
+
+```{r}
+plastics_long(plastics)
+```
+
+This transposes a wide format data frame into long format, while also adding a
+user-friendly column showing plastic type names.
+
 ## clean_plastics()
 
 ```{r}

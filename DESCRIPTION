@@ -13,10 +13,16 @@ License: `use_mit_license()`, `use_gpl3_license()` or friends to pick a
     license
 Imports:
     arrow,
+    broom,
+    data.table,
     dplyr,
     ggplot2,
     ggridges,
+    grDevices,
+    purrr,
+    readr,
     rlang,
+    stats,
     stringr,
     tidyr
 Encoding: UTF-8
