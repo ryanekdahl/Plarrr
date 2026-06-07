@@ -15,11 +15,9 @@
 #' @return A `ggplot` object.
 #'
 #' @export
-#' @importFrom dplyr summarize across all_of select slice_max mutate
-#' @importFrom tidyr pivot_longer
-#' @importFrom ggplot2 ggplot aes geom_col geom_text scale_x_continuous
-#'   expansion labs theme_minimal theme element_text
-#' @importFrom rlang .data
+#' @importFrom dplyr filter summarize across all_of select slice_max mutate
+#' @importFrom ggplot2 ggplot aes geom_col geom_text scale_x_continuous expansion labs theme_minimal theme element_text
+#' @importFrom rlang .data .env
 #'
 #' @examples
 #' \dontrun{
@@ -31,7 +29,10 @@ plot_plastics <- function(data, country, n = 3) {
   allowed <- c("pet", "hdpe", "ldpe", "pp", "ps", "pvc", "o")
 
   totals <- data |>
-    filter_country(country) |>
+    dplyr::filter(
+      .data$parent_company == "Grand Total",
+      .data$country == .env$country
+    ) |>
     dplyr::summarize(
       dplyr::across(
         dplyr::all_of(c(allowed, "grand_total")),
@@ -47,25 +48,17 @@ plot_plastics <- function(data, country, n = 3) {
 
   top <- totals |>
     dplyr::select(dplyr::all_of(allowed)) |>
-    tidyr::pivot_longer(
-      cols      = dplyr::everything(),
-      names_to  = "plastic_type",
-      values_to = "count"
-    ) |>
-    dplyr::mutate(
-      percent      = .data$count / plastic_total * 100,
-      plastic_type = ifelse(.data$plastic_type == "o",
-                            "Other", toupper(.data$plastic_type))
-    ) |>
+    plastics_long(cols = allowed) |>
+    dplyr::mutate(percent = .data$count / plastic_total * 100) |>
     dplyr::slice_max(.data$count, n = n, with_ties = FALSE) |>
     dplyr::mutate(
-      plastic_type = factor(.data$plastic_type,
-                            levels = .data$plastic_type[order(.data$count)])
+      plastic_label = factor(.data$plastic_label,
+                             levels = .data$plastic_label[order(.data$count)])
     )
 
   ggplot2::ggplot(
     top,
-    ggplot2::aes(x = .data$percent, y = .data$plastic_type)
+    ggplot2::aes(x = .data$percent, y = .data$plastic_label)
   ) +
     ggplot2::geom_col(fill = "#8B1A1A") +
     ggplot2::geom_text(

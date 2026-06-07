@@ -11,12 +11,11 @@ Description: Provides helper functions for cleaning, summarizing, and reshaping
     visualizations.
 License: `use_mit_license()`, `use_gpl3_license()` or friends to pick a
     license
-Imports: 
+Imports:
     arrow,
     dplyr,
     ggplot2,
-    here,
-    readr,
+    ggridges,
     rlang,
     stringr,
     tidyr
