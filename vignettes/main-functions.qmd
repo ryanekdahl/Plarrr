@@ -3,10 +3,24 @@ title: "Main Functions"
 format: html
 ---
 
+## load_data()
+
 ```{r}
-library(Plarrr)
 plastics <- load_data()
 ```
+
+This loads the full merged plastic waste dataset from the package, combining
+the TidyTuesday BFFP audit data with country-level ecology and population data.
+
+## clean_plastics()
+
+```{r}
+plastics <- clean_plastics(plastics)
+```
+
+This standardizes inconsistent country names (e.g. recoding `"Korea"` to
+`"South Korea"`, removing junk rows), and adds plastic proportion columns
+for each plastic type as a share of grand total.
 
 ## summarize_country()
 
@@ -14,20 +28,43 @@ plastics <- load_data()
 summarize_country(plastics, "India")
 ```
 
+This returns a one-row summary of a country's average plastic type
+proportions across all years, along with its dominant plastic type.
+
 ## summary_category_metrics()
 
 ```{r}
-summary_category_metrics(plastics)
+summary_category_metrics(plastics, env_var = "threatened_species")
 ```
+
+This bins countries into Low, Medium, and High tiers by an environmental
+indicator and summarizes average plastic composition within each tier.
 
 ## plot_plastics()
 
 ```{r}
-plot_plastics(plastics, country = "India")
+plot_plastics(plastics, country = "India", n = 3)
 ```
+
+This produces a horizontal bar chart of a country's top plastic types,
+labelled by their share of total plastic collected.
 
 ## plot_plastic_ridges()
 
 ```{r}
-plot_plastic_ridges(plastics)
+plot_plastic_ridges(plastics, plastics = c("pet", "hdpe", "pp"),
+                   env_var = "threatened_species")
 ```
+
+This draws weighted density ridges of an environmental indicator across
+selected plastic types, with each country weighted by quantity collected.
+
+## model_pet_dominant()
+
+```{r}
+model_pet_dominant(plastics)
+```
+
+This fits a logistic regression predicting whether PET is a country's
+dominant plastic type from forested area and threatened species count,
+returning a tidy table of coefficients and p-values.

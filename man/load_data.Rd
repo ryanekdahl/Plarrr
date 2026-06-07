@@ -7,11 +7,13 @@
 load_data()
 }
 \value{
-A data frame of plastic-waste records.
+A data frame with columns that include country, year, parent_company,
+plastic type totals (hdpe, ldpe, pet, pp, ps, pvc), grand_total,
+num_events, volunteer, and other country level metrics.
 }
 \description{
-Reads the merged plastic waste data from the package's \verb{inst/extdata/}
-folder.
+Loads the plastic waste dataset directly
+from TidyTuesday
 }
 \examples{
 df <- load_data()
