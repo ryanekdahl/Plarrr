@@ -8,36 +8,26 @@ library(Plarrr)
 plastics <- load_data()
 ```
 
-## Planned Functions
-
-### 1. Summarize total plastic collected by country
+## summarize_country()
 
 ```{r}
-summarize_country_totals(plastics, year = 2020, top_n = 10)
+summarize_country(plastics, "India")
 ```
 
-Filters out filler rows like "Grand Total" and "Unbranded", groups by country, 
-and returns a ranked table of the top 10 countries as default (or as many as desired) 
-by grand_total plastic collected for a given year. 
-
-### 2. Plot country-level plastic waste by year
+## summary_category_metrics()
 
 ```{r}
-plot_country_trend(plastics, countries = c("China", "Philippines", "Nigeria"))
+summary_category_metrics(plastics)
 ```
 
-Produces a ggplot2 grouped bar chart comparing "grand_total" plastic waste
-collected in 2019 vs 2020 for one or more countries side by side. Handles
-filtering, grouping, and themes automatically so you just include a character
-vector of country names or just a single country name.
-
-### 3. Summarize plastic type breakdown across all countries
+## plot_plastics()
 
 ```{r}
-summarize_plastic_types(plastics, year = 2020)
+plot_plastics(plastics, country = "India")
 ```
 
-Pivots the seven plastic type columns (hdpe, ldpe, o, pet, pp, ps, pvc) to a
-long data frame, sums each type globally for either 2019 or 2020, and
-returns a two-column table of plastic type and total count. Automatically
-removes filler rows like "Grand Total" and "Unbranded" as well.
+## plot_plastic_ridges()
+
+```{r}
+plot_plastic_ridges(plastics)
+```

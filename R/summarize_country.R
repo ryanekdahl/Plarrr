@@ -26,10 +26,10 @@
 #' }
 #'
 #' @export
-#' @importFrom dplyr summarize mutate pull if_else slice_max
+#' @importFrom dplyr filter summarize mutate pull if_else slice_max
 #' @importFrom tidyr pivot_longer
 #' @importFrom stringr str_remove str_to_upper
-#' @importFrom rlang .data
+#' @importFrom rlang .data .env
 #'
 #' @examples
 #' \dontrun{
@@ -42,7 +42,11 @@ summarize_country <- function(data, country_name) {
   }
 
   country_stats <- data |>
-    filter_country(country_name, positive_only = TRUE) |>
+    dplyr::filter(
+      .data$parent_company == "Grand Total",
+      .data$country == .env$country_name,
+      .data$grand_total > 0
+    ) |>
     dplyr::summarize(
       country  = country_name,
       avg_pet  = mean(.data$pet  / .data$grand_total, na.rm = TRUE),
